@@ -393,22 +393,22 @@ which can be simplified to the following where `auto_route` generates the redire
 ## Tab Navigation
 If you're working with flutter mobile you're most likely to implement tabs navigation, that's why `auto_route` makes tabs navigation as easy and straightforward as possible.
 
-in the previous example we used an `AutoRouter` widget to render nested child routes, `AutoRouter` is just a shortcut for `AutoStackRouter`, `StackRouters` manage a stack of pages inside of them where the active/visible page is always the one on top and you'd need to pop it to see the page beneath it.
+In the previous example we used an `AutoRouter` widget to render nested child routes, `AutoRouter` is just a shortcut for `AutoStackRouter`, `StackRouters` manage a stack of pages inside of them where the active/visible page is always the one on top and you'd need to pop it to see the page beneath it.
 
-Now we can try to implement our tabs using an `AutoRouter` (StackRouter) by pushing or replacing a nested route every-time the tab changes and that might work but our tabs state will be lost, not to mention the transition between tabs issues, luckily auto_route comes equipped with an `AutoTabsRouter` which is especially made to handle tab navigation.
+Now we can try to implement our tabs using an `AutoRouter` (StackRouter) by pushing or replacing a nested route every time the tab changes and that might work but our tabs state will be lost, not to mention the transition between tabs issues, luckily auto_route comes equipped with an `AutoTabsRouter` which is especially made to handle tab navigation.
 
-`AutoTabsRouter` lets you switch between different routes while preserving offstage-routes state, tab routes are lazily loaded by default ( can be disabled ) and finally it allows to create whatever transition animation you want.
+`AutoTabsRouter` lets you switch between different routes while preserving offstage-routes state, tab routes are lazily loaded by default ( can be disabled ) and finally it allows you to create whatever transition animation you want.
 
 Let's change the previous example to use tab navigation.
 
-Notice that we're not going to change  anything in our routes declaration map, we still have a dashboard page that has tree nested children, users, posts and settings.
+Notice that we're not going to change anything in our routes declaration map, we still have a dashboard page that has tree nested children, users, posts and settings.
 ```dart        
 class DashboardPage extends StatelessWidget {    
   @override    
   Widget build(BuildContext context) {    
     return AutoTabsRouter(    
     // list of your tab routes    
-    // routes used here must be declaraed as children    
+    // routes used here must be declared as children    
     // routes of /dashboard     
       routes: const [    
         UsersRoute(),    
@@ -421,11 +421,11 @@ class DashboardPage extends StatelessWidget {
         // Here we're building our Scaffold inside of AutoTabsRouter    
         // to access the tabsRouter controller provided in this context    
         //     
-        //alterntivly you could use a global key    
+        // alternatively you could use a global key    
         return Scaffold(    
             body: FadeTransition(    
               opacity: animation,    
-              // the passed child is techinaclly our animated selected-tab page    
+              // the passed child is technically our animated selected-tab page    
               child: child,    
             ),    
             bottomNavigationBar: BottomNavigationBar(    
@@ -445,7 +445,7 @@ class DashboardPage extends StatelessWidget {
   }    
 }    
 ```        
-if you think the above setup is a bit messy you could use the shipped-in `AutoTabsScaffold` that makes things much cleaner.
+If you think the above setup is a bit messy you could use the shipped-in `AutoTabsScaffold` that makes things much cleaner.
 ```dart        
 class DashboardPage extends StatelessWidget {    
     
